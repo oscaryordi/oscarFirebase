@@ -2,21 +2,22 @@
 Proyecto tercer cautrimestre Iconos38
 
 
-Proyecto:
+## Proyecto:
 Actualización de infracciones de transito
 
-Descripcion:
+## Descripcion:
 Dada una lista de unidades vehiculares se actualizarán las 
 infracciones de transito que tenga cada unidad y se dará un 
 seguimiento del estatus de cada infracción.
 
-Características
+## Características
 Debe tener formularios para la creación, edición, borrado, de cada 
 entidad (usuario, vehiculo, infraccion), y contar con resumenes 
 de infracciones actualizable al instante, asi como de las 
 actualizaciones del status de pago de infracciones.
 
-Funcionalidades
+## Funcionalidades
+### CAPTURAS
 -Debe administrar usuarios y contraseñas de acceso
 -CRUd usuarios
 -CRUD usuario/unidad
@@ -24,12 +25,12 @@ Funcionalidades
 -CRUD de placas de circulacion
 -CRUD de infracciones de transito
 -CRUD seguimiento (notifica a usuario, status de pago de infraccion)
--RESUMENES:
+### RESUMENES:
 +Vehiculos
 +Usuarios
 +Infracciones
 
-Módulos
+## Módulos
 *Unidad vehicular
 *Placas de circulacion
 *Infracciones
