@@ -18,20 +18,20 @@ de infracciones actualizable al instante, asi como de las
 
 ## Funcionalidades
 ### CAPTURAS
--Debe administrar usuarios y contraseñas de acceso
--CRUd usuarios
--CRUD usuario/unidad
--CRUD de unidades vehiculares
--CRUD de placas de circulacion
--CRUD de infracciones de transito
--CRUD seguimiento (notifica a usuario, **status** de pago de infraccion)
+- Debe administrar usuarios y contraseñas de acceso
+- CRUd usuarios
+- CRUD usuario/unidad
+- CRUD de unidades vehiculares
+- CRUD de placas de circulacion
+- CRUD de infracciones de transito
+- CRUD seguimiento (notifica a usuario, **status** de pago de infraccion)
 ### RESUMENES:
-+Vehiculos
-+Usuarios
-+Infracciones
++ Vehiculos
++ Usuarios
++ Infracciones
 
 ## Módulos
-*Unidad vehicular
-*Placas de circulacion
-*Infracciones
-*Usuario
+* Unidad vehicular
+* Placas de circulacion
+* Infracciones
+* Usuario
