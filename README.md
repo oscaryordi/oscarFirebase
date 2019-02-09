@@ -1,6 +1,6 @@
 # oscarFirebase
 Proyecto tercer cautrimestre Iconos38
-[Con titulo](http://websastre.com/oscarFirebase/ "oscarFirebase")
+[ver proyecto](http://websastre.com/oscarFirebase/ "oscarFirebase")
 
 ## Proyecto:
 Actualización de infracciones de transito
