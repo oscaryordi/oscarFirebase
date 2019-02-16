@@ -28,10 +28,16 @@
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
     <link href="css/oscarFirebase.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">oscarFirebase</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top ">
+
+  <a class="navbar-brand" href="#">
+      Infracciones 
+    <i class="fas fa-car-crash"></i>
+  </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -65,7 +71,7 @@
 
 <main role="main" class="container">
 
-  <div class="starter-template px-5 mt-5">
+  <div class="starter-template py-5 my-5">
     <h1>oscarFirebase</h1>
     <p class="lead">Seguimiento a infracciones.</p>
   </div>
