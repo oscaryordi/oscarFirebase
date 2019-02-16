@@ -27,6 +27,7 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
+    <link href="css/oscarFirebase.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -64,7 +65,7 @@
 
 <main role="main" class="container">
 
-  <div class="starter-template pt-5 mt-5">
+  <div class="starter-template px-5 mt-5">
     <h1>oscarFirebase</h1>
     <p class="lead">Seguimiento a infracciones.</p>
   </div>

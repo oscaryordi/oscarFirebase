@@ -15,7 +15,7 @@ seguimiento del *estatus* de cada infracción.
 Debe tener formularios para la creación, edición, borrado, de cada 
 entidad (usuario, vehiculo, infraccion), y contar con **resumenes** 
 de infracciones actualizable al instante, asi como de las 
-***actualizaciones del status de pago de infracciones.*** 
+***actualizaciones del status de pago de infracciones.***  por chofer
 
 ## Funcionalidades
 ### CAPTURAS
@@ -36,3 +36,4 @@ de infracciones actualizable al instante, asi como de las
 * Placas de circulacion
 * Infracciones
 * Usuario
+
