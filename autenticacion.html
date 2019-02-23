@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Autenticación con email en Firebase</title>
+</head>
+
+<body>
+  <h1>Autenticación con email en Firebase</h1>
+  <h2>Registro de Usuarios (Sign in)</h2>
+  <form id="signin">
+    <input type="text" name="name" placeholder="Tu nombre" required>
+    <br>
+    <input type="email" name="email" placeholder="Tu email" required>
+    <br>
+    <input type="password" name="password" placeholder="Tu contraseña" required>
+    <br>
+    <input type="submit" value="Registrar">
+  </form>
+  <div id="signin-message"></div>
+  <h2>Inicio de Sesión (Log in)</h2>
+  <form id="login">
+    <input type="email" name="email" placeholder="Tu email" required>
+    <br>
+    <input type="password" name="password" placeholder="Tu contraseña" required>
+    <br>
+    <input type="submit" value="Ingresar">
+  </form>
+  <div id="login-message"></div>
+  <p id="session-message"></p>
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    const config = {
+      apiKey: "AIzaSyDjurFnuupuRhdcIm3mdp0XFpJwRh7W3C4",
+      authDomain: "oscar-319c4.firebaseapp.com",
+      databaseURL: "https://oscar-319c4.firebaseio.com",
+      projectId: "oscar-319c4",
+      storageBucket: "oscar-319c4.appspot.com",
+      messagingSenderId: "559602151820"
+    };
+    firebase.initializeApp(config);
+    //https://firebase.google.com/docs/auth/
+    const auth = firebase.auth(),
+      user = auth.currentUser,
+      authMessage = document.getElementById('session-message'),
+      formSignin = document.getElementById('signin'),
+      formLogin = document.getElementById('login')
+    //console.log(auth)
+    function createUserInDB(uid, name, email) {
+      let usersRef = firebase.database().ref().child('users')
+      usersRef.child(uid).set({
+        name,
+        email
+      })
+    }
+    auth.onAuthStateChanged(user => {
+      console.log(user)
+      if (user) {
+        authMessage.innerHTML = `
+          <p>Si ves este mensaje, es por que estás logueado</p>
+          <button id="logout">Salir</button>
+        `
+      } else {
+        authMessage.innerHTML = `
+          <p>El contenido de esta sección es para usuarios registrados</p>
+        `
+      }
+    })
+    formSignin.addEventListener('submit', e => {
+      e.preventDefault()
+      let message = document.getElementById('signin-message')
+      auth
+        .createUserWithEmailAndPassword(
+          e.target.email.value,
+          e.target.password.value
+        )
+        .then(res => {
+          console.log(res);
+          message.innerHTML = `
+            <p>Usuario creado con el correo <b>${e.target.email.value}</b>.</p>
+          `
+          createUserInDB(
+            res.user.uid,
+            e.target.name.value,
+            e.target.email.value
+          )
+          e.target.reset()
+        })
+        .catch(err => {
+          console.log(err.message)
+          message.innerHTML = `
+            <p>La cuenta de correo <b>${e.target.email.value}</b> ya existe. Intenta con otra.</p>
+          `
+          e.target.name.focus()
+        })
+    })
+    formLogin.addEventListener('submit', e => {
+        e.preventDefault()
+        let message = document.getElementById('login-message')
+        auth
+          .signInWithEmailAndPassword(
+            e.target.email.value,
+            e.target.password.value
+          )
+          .then(res => {
+            console.log(res);
+            message.innerHTML = `
+              <p>Usuario logueado con el correo <b>${e.target.email.value}</b>.</p>
+            `
+            e.target.reset()
+          })
+          .catch(err => {
+            console.log(err.message)
+            message.innerHTML = `
+              <p>Correo electrónico o password no son validos. Verifica nuevamente.</p>
+            `
+            e.target.password.focus()
+          })
+      })
+    document.addEventListener('click', e => {
+      if ( e.target.matches('#logout') ) {
+        auth
+          .signOut()
+          .then(() => {
+            authMessage.innerHTML = '<p>Sesión Terminada</p>'
+          })
+      }
+    })
+  </script>
+</body>
+
+</html>

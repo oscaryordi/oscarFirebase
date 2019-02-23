@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>oscarFirebase</title>
+    <title>Infracciones</title>
 
     <!-- Bootstrap core CSS -->
 <link href="/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -72,9 +72,125 @@
 <main role="main" class="container">
 
   <div class="starter-template py-5 my-5">
-    <h1>oscarFirebase</h1>
+    <h1>Infracciones</h1>
     <p class="lead">Seguimiento a infracciones.</p>
   </div>
+
+
+
+
+  <h1>CRUD con Firebase</h1>
+  <h2>Unidades Vehiculares</h2>
+  <h3>Create / Update</h3>
+  <form id="vehiculos-form">
+    <input type="text" id="marca" placeholder="Marca" required>
+    <br>
+    <input type="number" id="modelo" placeholder="Modelo" required>
+    <br>
+    <input type="hidden" id="id">
+    <input type="submit" value="Salvar">
+  </form>
+  <h3>Read / Delete</h3>
+  <ul id="vehiculos"></ul>
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    const config = {
+      apiKey: "AIzaSyDjurFnuupuRhdcIm3mdp0XFpJwRh7W3C4",
+      authDomain: "oscar-319c4.firebaseapp.com",
+      databaseURL: "https://oscar-319c4.firebaseio.com",
+      projectId: "oscar-319c4",
+      storageBucket: "oscar-319c4.appspot.com",
+      messagingSenderId: "559602151820"
+    };
+
+
+
+    firebase.initializeApp(config);
+    const db = firebase.database(),
+      vehiculosRef = db.ref().child('vehiculos'),
+      vehiculosForm = document.getElementById('vehiculos-form'),
+      vehiculosMarca = document.getElementById('marca'),
+      vehiculosModelo = document.getElementById('modelo'),
+      vehiculosId = document.getElementById('id'),
+      vehiculo = document.getElementById('vehiculos')
+    //CREATE
+
+
+    vehiculosForm.addEventListener('submit', e => {
+      e.preventDefault()
+      let id = vehiculosId.value || vehiculosRef.push().key,
+        data = {
+          marca: vehiculosMarca.value,
+          modelo: vehiculosModelo.value
+        },
+        updateData = {}
+      updateData[`/${id}`] = data
+      vehiculosRef.update(updateData)
+      vehiculosId.value = ''
+      vehiculosForm.reset()
+    })
+
+
+    //READ
+    function vehiculosTemplate({ marca, modelo }) {
+      return `
+        <span class="marca">${marca}</span>
+        -
+        <span class="modelo">${modelo}</span>
+        <button class="edit">Editar</button>
+        <button class="delete">Eliminar</button>
+      `
+    }
+    vehiculosRef.on('child_added', data => {
+      let li = document.createElement('li')
+      li.id = data.key
+      li.innerHTML = vehiculosTemplate(data.val())
+      vehiculos.appendChild(li)
+    })
+    vehiculosRef.on('child_changed', data => {
+      let affectedNode = document.getElementById(data.key)
+      affectedNode.innerHTML = vehiculosTemplate(data.val())
+    })
+    vehiculosRef.on('child_removed', data => {
+      let affectedNode = document.getElementById(data.key)
+      affectedNode.parentElement.removeChild(affectedNode)
+    })
+
+
+    document.addEventListener('click', e => {
+      let affectedNode = e.target.parentElement
+      //console.log(affectedNode)
+      //UPDATE
+      if (e.target.classList.contains('edit')) {
+        vehiculosMarca.value = affectedNode.querySelector('.marca').innerText
+        vehiculosModelo.value = affectedNode.querySelector('.modelo').innerText
+        vehiculosId.value = affectedNode.id
+      }
+      //DELETE
+      if (e.target.classList.contains('delete')) {
+        let id = affectedNode.id
+        db.ref().child(`vehiculos/${id}`).remove()
+      }
+    })
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </main><!-- /.container -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
