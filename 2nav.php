@@ -4,7 +4,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="index.php">
               <span data-feather="home"></span>
               Principal <span class="sr-only">(current)</span>
             </a>
@@ -16,7 +16,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="vehiculos.php">
               <span data-feather="shopping-cart"></span>
               Vehiculos
             </a>
