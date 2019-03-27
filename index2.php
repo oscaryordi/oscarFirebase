@@ -71,21 +71,25 @@
 
 <main role="main" class="container">
 
-  <div class="starter-template py-5 my-5">
+  <div class="starter-template py-0 my-0">
     <h1>Infracciones</h1>
-    <p class="lead">Seguimiento a infracciones.</p>
+    <p>Seguimiento a infracciones.</p>
   </div>
-
-
-
-
   <h1>CRUD con Firebase</h1>
   <h2>Unidades Vehiculares</h2>
   <h3>Create / Update</h3>
   <form id="vehiculos-form">
     <input type="text" id="marca" placeholder="Marca" required>
     <br>
-    <input type="number" id="modelo" placeholder="Modelo" required>
+    <input type="text" id="submarca" placeholder="Submarca" required>
+    <br>
+    <input type="text" id="tipo" placeholder="Tipo" required>
+    <br>
+    <input type="text" id="modelo" placeholder="Modelo" required>
+    <br>
+    <input type="text" id="color" placeholder="Color" required>
+    <br>
+    <input type="text" id="motor" placeholder="Motor" required>
     <br>
     <input type="hidden" id="id">
     <input type="submit" value="Salvar">
@@ -111,7 +115,11 @@
       vehiculosRef = db.ref().child('vehiculos'),
       vehiculosForm = document.getElementById('vehiculos-form'),
       vehiculosMarca = document.getElementById('marca'),
+      vehiculosSubmarca = document.getElementById('submarca'),
+      vehiculosTipo = document.getElementById('tipo'),
       vehiculosModelo = document.getElementById('modelo'),
+      vehiculosColor = document.getElementById('color'),
+      vehiculosMotor = document.getElementById('motor'),
       vehiculosId = document.getElementById('id'),
       vehiculo = document.getElementById('vehiculos')
     //CREATE
@@ -122,7 +130,11 @@
       let id = vehiculosId.value || vehiculosRef.push().key,
         data = {
           marca: vehiculosMarca.value,
-          modelo: vehiculosModelo.value
+          submarca: vehiculosSubmarca.value,
+          tipo: vehiculosTipo.value,
+          modelo: vehiculosModelo.value,
+          color: vehiculosColor.value,
+          motor: vehiculosMotor.value
         },
         updateData = {}
       updateData[`/${id}`] = data
@@ -133,11 +145,20 @@
 
 
     //READ
-    function vehiculosTemplate({ marca, modelo }) {
+    function vehiculosTemplate({ marca, submarca, tipo, modelo, color, motor }) {
       return `
         <span class="marca">${marca}</span>
         -
+        <span class="submarca">${submarca}</span>
+        -
+        <span class="tipo">${tipo}</span>
+        -
         <span class="modelo">${modelo}</span>
+        -
+        <span class="color">${color}</span>
+        -
+        <span class="motor">${motor}</span>
+        -
         <button class="edit">Editar</button>
         <button class="delete">Eliminar</button>
       `
@@ -164,7 +185,11 @@
       //UPDATE
       if (e.target.classList.contains('edit')) {
         vehiculosMarca.value = affectedNode.querySelector('.marca').innerText
+        vehiculosSubmarca.value = affectedNode.querySelector('.submarca').innerText
+        vehiculosTipo.value = affectedNode.querySelector('.tipo').innerText
         vehiculosModelo.value = affectedNode.querySelector('.modelo').innerText
+        vehiculosColor.value = affectedNode.querySelector('.color').innerText
+        vehiculosMotor.value = affectedNode.querySelector('.motor').innerText
         vehiculosId.value = affectedNode.id
       }
       //DELETE
