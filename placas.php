@@ -3,7 +3,7 @@ include('1header.php');
 include('2nav.php');
 ?>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-<h1>Vehiculos</h1> 
+<h1>Placas</h1> 
 
 
 
@@ -11,28 +11,18 @@ include('2nav.php');
 
 
 <!-- contenido -->
-<h1>CRUD con Firebase</h1>
-  <h2>Unidades Vehiculares</h2>
+
+<h1>Placas de Circulación</h1>
+  <h2>Placas</h2>
   <h3>Create / Update</h3>
   <form id="vehiculos-form">
-    <input type="text" id="marca" placeholder="Marca" required>
-    <br>
-    <input type="text" id="submarca" placeholder="Submarca" required>
-    <br>
     <input type="text" id="serie" placeholder="Serie" required>
-    <br>    
-    <input type="text" id="tipo" placeholder="Tipo" required>
     <br>
-    <input type="text" id="modelo" placeholder="Modelo" required>
-    <br>
-    <input type="text" id="color" placeholder="Color" required>
-    <br>
-    <input type="text" id="motor" placeholder="Motor" required>
+    <input type="text" id="placas" placeholder="Placas" required>
     <br>
     <input type="hidden" id="id">
     <input type="submit" value="Salvar">
   </form>
-
   <h3>Read / Delete</h3>
   <ul id="vehiculos"></ul>
   <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
@@ -51,17 +41,16 @@ include('2nav.php');
 
     firebase.initializeApp(config);
     const db = firebase.database(),
-      vehiculosRef   = db.ref().child('vehiculos'),
-      vehiculosForm  = document.getElementById('vehiculos-form'),
+      vehiculosRef = db.ref().child('vehiculos'),
+      vehiculosForm = document.getElementById('vehiculos-form'),
       vehiculosMarca = document.getElementById('marca'),
       vehiculosSubmarca = document.getElementById('submarca'),
-      vehiculosSerie = document.getElementById('serie'),      
-      vehiculosTipo  = document.getElementById('tipo'),
+      vehiculosTipo = document.getElementById('tipo'),
       vehiculosModelo = document.getElementById('modelo'),
       vehiculosColor = document.getElementById('color'),
       vehiculosMotor = document.getElementById('motor'),
-      vehiculosId    = document.getElementById('id'),
-      vehiculo       = document.getElementById('vehiculos')
+      vehiculosId = document.getElementById('id'),
+      vehiculo = document.getElementById('vehiculos')
     //CREATE
 
 
@@ -69,14 +58,12 @@ include('2nav.php');
       e.preventDefault()
       let id = vehiculosId.value || vehiculosRef.push().key,
         data = {
-          marca:    vehiculosMarca.value,
+          marca: vehiculosMarca.value,
           submarca: vehiculosSubmarca.value,
-          serie:    vehiculosSerie.value,
-          tipo:     vehiculosTipo.value,
-          modelo:   vehiculosModelo.value,
-          color:    vehiculosColor.value,
-          motor:    vehiculosMotor.value,
-          id:    vehiculosId.value 
+          tipo: vehiculosTipo.value,
+          modelo: vehiculosModelo.value,
+          color: vehiculosColor.value,
+          motor: vehiculosMotor.value
         },
         updateData = {}
       updateData[`/${id}`] = data
@@ -87,13 +74,11 @@ include('2nav.php');
 
 
     //READ
-    function vehiculosTemplate({ marca, submarca, serie, tipo, modelo, color, motor }) {
+    function vehiculosTemplate({ marca, submarca, tipo, modelo, color, motor }) {
       return `
         <span class="marca">${marca}</span>
         -
         <span class="submarca">${submarca}</span>
-        -
-        <span class="submarca">${serie}</span>
         -
         <span class="tipo">${tipo}</span>
         -
@@ -107,7 +92,6 @@ include('2nav.php');
         <button class="delete">Eliminar</button>
       `
     }
-
     vehiculosRef.on('child_added', data => {
       let li = document.createElement('li')
       li.id = data.key
@@ -129,16 +113,14 @@ include('2nav.php');
       //console.log(affectedNode)
       //UPDATE
       if (e.target.classList.contains('edit')) {
-        vehiculosMarca.value    = affectedNode.querySelector('.marca').innerText
+        vehiculosMarca.value = affectedNode.querySelector('.marca').innerText
         vehiculosSubmarca.value = affectedNode.querySelector('.submarca').innerText
-        vehiculosSerie.value    = affectedNode.querySelector('.serie').innerText
-        vehiculosTipo.value     = affectedNode.querySelector('.tipo').innerText
-        vehiculosModelo.value   = affectedNode.querySelector('.modelo').innerText
-        vehiculosColor.value    = affectedNode.querySelector('.color').innerText
-        vehiculosMotor.value    = affectedNode.querySelector('.motor').innerText
-        vehiculosId.value       = affectedNode.id
+        vehiculosTipo.value = affectedNode.querySelector('.tipo').innerText
+        vehiculosModelo.value = affectedNode.querySelector('.modelo').innerText
+        vehiculosColor.value = affectedNode.querySelector('.color').innerText
+        vehiculosMotor.value = affectedNode.querySelector('.motor').innerText
+        vehiculosId.value = affectedNode.id
       }
-
       //DELETE
       if (e.target.classList.contains('delete')) {
         let id = affectedNode.id
@@ -149,6 +131,8 @@ include('2nav.php');
   </script>
 
 <!-- contenido -->
+
+
 
 </main>
 <?php
