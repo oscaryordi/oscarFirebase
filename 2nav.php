@@ -10,31 +10,31 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="usuariosAlta.php">
               <span data-feather="file"></span>
               Usuarios
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="vehiculos.php">
+            <a class="nav-link" href="vehiculosAlta.php">
               <span data-feather="shopping-cart"></span>
               Vehiculos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="placas.php">
+            <a class="nav-link" href="placasAlta.php">
               <span data-feather="users"></span>
               Placas
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="infraccionesAlta.php">
               <span data-feather="bar-chart-2"></span>
               Infracciones
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="seguimientoAlta.php">
               <span data-feather="layers"></span>
               Seguimiento
             </a>
@@ -49,25 +49,25 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="vehiculosResumen.php">
               <span data-feather="file-text"></span>
               Vehiculos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="usuariosResumen.php">
               <span data-feather="file-text"></span>
               Usuarios
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="infraccionesResumen.php">
               <span data-feather="file-text"></span>
               Infracciones
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="otrosResumen.php">
               <span data-feather="file-text"></span>
               Otros
             </a>
