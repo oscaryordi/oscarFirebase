@@ -67,9 +67,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="otrosResumen.php">
+            <a class="nav-link" href="seguimientoResumen.php">
               <span data-feather="file-text"></span>
-              Otros
+              Seguimiento
             </a>
           </li>
         </ul>
