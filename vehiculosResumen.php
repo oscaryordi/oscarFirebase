@@ -4,6 +4,6 @@ include('2nav.php');
 ?>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 <h1>Vehiculos Resumen</h1>
-</main>
+</main> 
 <?php
 include('3footer.php');
